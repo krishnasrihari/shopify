@@ -11,10 +11,9 @@ test:
   <<: *sqlite
   database: db/test.sqlite3
 
-postgres: &postgres
+pg: &pg
   adapter: postgresql
   encoding: unicode
-  host: localhost
   pool: 5
 
 login: &login
