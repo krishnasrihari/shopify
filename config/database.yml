@@ -21,6 +21,6 @@ login: &login
   password: 'root'
 
 production:
-  <<: *postgres
+  <<: *pg
   <<: *login
   database: shopify_production
