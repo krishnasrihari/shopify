@@ -1,0 +1,37 @@
+<%= form_for(account) do |f| %>
+  <% if account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(account.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+      <% account.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :shopify_accont_url %>
+    <%= f.text_field :shopify_accont_url %>
+  </div>
+
+  <div class="field">
+    <%= f.label :shopify_api_key %>
+    <%= f.text_field :shopify_api_key %>
+  </div>
+
+  <div class="field">
+    <%= f.label :shopify_password %>
+    <%= f.text_field :shopify_password %>
+  </div>
+
+  <div class="field">
+    <%= f.label :shopify_shared_secret %>
+    <%= f.text_field :shopify_shared_secret %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
