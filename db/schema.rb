@@ -10,27 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914094651) do
+ActiveRecord::Schema.define(version: 20160914111511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
     t.string   "shopify_account_url"
-    t.string   "shopify_api_key"
     t.string   "shopify_password"
-    t.string   "shopify_shared_secret"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "shopify_shop_id"
+    t.string   "shopify_shop_name"
+    t.string   "shop_owner"
+    t.string   "email"
+    t.index ["email"], name: "index_accounts_on_email", using: :btree
+    t.index ["shopify_account_url"], name: "index_accounts_on_shopify_account_url", using: :btree
   end
 
   create_table "contests", force: :cascade do |t|
     t.string   "name"
-    t.bigint   "product_id"
+    t.integer  "product_id"
     t.datetime "start_date"
     t.datetime "end_date"
     t.integer  "max_results"
-    t.bigint   "order_id"
+    t.integer  "order_id"
     t.string   "product_name"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
@@ -40,8 +44,8 @@ ActiveRecord::Schema.define(version: 20160914094651) do
   create_table "order_items", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "variant_id"
-    t.bigint   "shopify_product_id"
-    t.bigint   "shopify_variant_id"
+    t.integer  "shopify_product_id"
+    t.integer  "shopify_variant_id"
     t.float    "unit_price"
     t.integer  "quantity"
     t.datetime "created_at",         null: false
@@ -56,7 +60,7 @@ ActiveRecord::Schema.define(version: 20160914094651) do
     t.string   "email"
     t.string   "first_name"
     t.string   "last_name"
-    t.bigint   "shopify_order_id"
+    t.integer  "shopify_order_id"
     t.datetime "order_date"
     t.float    "total"
     t.integer  "line_item_count"
@@ -67,15 +71,15 @@ ActiveRecord::Schema.define(version: 20160914094651) do
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
-    t.bigint   "shopify_product_id"
+    t.integer  "shopify_product_id"
     t.datetime "last_shopify_sync"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
 
   create_table "variants", force: :cascade do |t|
-    t.bigint   "product_id"
-    t.bigint   "shopify_variant_id"
+    t.integer  "product_id"
+    t.integer  "shopify_variant_id"
     t.string   "option1"
     t.string   "option2"
     t.string   "option3"

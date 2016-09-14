@@ -2,12 +2,13 @@ class DashboardController < ApplicationController
   def index
     # Load past results in reverse order
     @contests = Contest.order("created_at desc")
-    
+
     # Instantiate a new Contest so the form loads properly
     @contest = Contest.new
 
     # Load the Products we want to use for Contests
-    @products = Product.all.order(:name)    
+    @products = Product.all.order(:name)
+
   end
 
 
@@ -44,5 +45,4 @@ class DashboardController < ApplicationController
   def contest_params
     params.require(:contest).permit(:name, :product_id, :start_date, :end_date, :max_results, :order_id, :criteria)
   end
-
 end
