@@ -52,7 +52,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  SHOPIFY_API_KEY = "123456789abcdefghijk"
-  SHOPIFY_SHARED_SECRET = "zyxvutsrq987654321"
+  SHOPIFY_API_KEY = "103f4259c3da02c790ba4396ac727d10"
+  SHOPIFY_SHARED_SECRET = "928bf1b1ed68f60f3b1ea3ad175a11e4"
   DOMAIN = "http://lvh.me"
 end
