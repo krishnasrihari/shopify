@@ -47,7 +47,23 @@
       <% end %>
     <% end %>
 
-    <%= yield %>
+    <div class="row-fluid">
+      <% if content_for?(:sidebar) %>
+      <div class="span3">
+        <div class="well sidebar-nav">
+          <%= yield(:sidebar) %>
+        </div>
+      </div>
+      <div class="span9">
+        <%= yield %>
+      </div>
+      <% else %>
+      <div class="span12">
+        <%= yield %>
+      </div>
+      <% end %>
+    </div>    
+
   </div>
 </body>
 </html>
