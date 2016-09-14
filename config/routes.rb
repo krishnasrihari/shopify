@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  
+  # Shopify routes
+get 'shopify/authorize' => 'shopify#authorize'
+post 'shopify/authorize' => 'shopify#authorize'
+get 'shopify/install' => 'shopify#install'
+post 'shopify/install' => 'shopify#install'
+
+
   get 'sessions/new'
-
   post 'sessions/create'
-
   get 'sessions/destroy'
 
   resources :orders do
