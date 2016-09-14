@@ -18,5 +18,8 @@ Rails.application.routes.draw do
       get 'test_connection'
     end
   end
+
+  post "create_contest" => 'dashboard#create_contest'
+
   root 'dashboard#index'
 end
