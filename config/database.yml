@@ -1,15 +1,6 @@
-default: &sqlite
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
-
-development:
-  <<: *sqlite
-  database: db/development.sqlite3
-
-test:
-  <<: *sqlite
-  database: db/test.sqlite3
+defaults: &defaults
+  encoding: unicode
+  host: localhost
 
 pg: &pg
   adapter: postgresql
@@ -19,6 +10,18 @@ pg: &pg
 login: &login
   username: 'postgres'
   password: 'root'
+
+development:
+  <<: *defaults  
+  <<: *pg
+  <<: *login
+  database: shopify_development
+
+test:
+  <<: *pg
+  <<: *login  
+  database: shopify_test
+
 
 production:
   <<: *pg

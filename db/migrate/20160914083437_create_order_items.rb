@@ -3,8 +3,8 @@ class CreateOrderItems < ActiveRecord::Migration[5.0]
     create_table :order_items do |t|
       t.integer :order_id
       t.integer :variant_id
-      t.integer :shopify_product_id, limit: 12
-      t.integer :shopify_variant_id, limit: 12
+      t.integer :shopify_product_id, limit: 6
+      t.integer :shopify_variant_id, limit: 6
       t.float :unit_price
       t.integer :quantity
 
