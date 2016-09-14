@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   
+  resources :orders do
+    collection do
+      get 'import'
+    end
+  end
+  
   resources :products do
     collection do
       get 'import'
