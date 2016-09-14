@@ -1,37 +1,44 @@
-<%= form_for(account) do |f| %>
-  <% if account.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(account.errors.count, "error") %> prohibited this account from being saved:</h2>
+<%= form_for(@account, html: { class: "form-horizontal", role: "form" }) do |f| %>
+  <% if @account.errors.any? %>
+    <div class="alert alert-danger alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h4>
 
       <ul>
-      <% account.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <% @account.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :shopify_accont_url %>
-    <%= f.text_field :shopify_accont_url %>
+  <div class="form-group">
+    <%= f.label :shopify_account_url, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :shopify_account_url, class: "form-control" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :shopify_api_key %>
-    <%= f.text_field :shopify_api_key %>
+  <div class="form-group">
+    <%= f.label :shopify_api_key, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :shopify_api_key, class: "form-control" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :shopify_password %>
-    <%= f.text_field :shopify_password %>
+  <div class="form-group">
+    <%= f.label :shopify_password, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :shopify_password, class: "form-control" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :shopify_shared_secret %>
-    <%= f.text_field :shopify_shared_secret %>
+  <div class="form-group">
+    <%= f.label :shopify_shared_secret, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :shopify_shared_secret, class: "form-control" %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
   </div>
 <% end %>

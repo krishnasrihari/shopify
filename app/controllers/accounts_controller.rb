@@ -69,6 +69,6 @@ class AccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
-      params.require(:account).permit(:shopify_accont_url, :shopify_api_key, :shopify_password, :shopify_shared_secret)
+      params.require(:account).permit(:shopify_account_url, :shopify_api_key, :shopify_password, :shopify_shared_secret)
     end
 end

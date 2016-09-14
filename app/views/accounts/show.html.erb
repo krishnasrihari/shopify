@@ -1,24 +1,26 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <%= link_to accounts_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_account_path(@account), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show account</h1>
+</div>
 
-<p>
-  <strong>Shopify accont url:</strong>
-  <%= @account.shopify_accont_url %>
-</p>
+<dl class="dl-horizontal">
+  <dt>Shopify account url:</dt>
+  <dd><%= @account.shopify_account_url %></dd>
 
-<p>
-  <strong>Shopify api key:</strong>
-  <%= @account.shopify_api_key %>
-</p>
+  <dt>Shopify api key:</dt>
+  <dd><%= @account.shopify_api_key %></dd>
 
-<p>
-  <strong>Shopify password:</strong>
-  <%= @account.shopify_password %>
-</p>
+  <dt>Shopify password:</dt>
+  <dd><%= @account.shopify_password %></dd>
 
-<p>
-  <strong>Shopify shared secret:</strong>
-  <%= @account.shopify_shared_secret %>
-</p>
+  <dt>Shopify shared secret:</dt>
+  <dd><%= @account.shopify_shared_secret %></dd>
 
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+</dl>

@@ -1,7 +1,7 @@
 class CreateAccounts < ActiveRecord::Migration[5.0]
   def change
     create_table :accounts do |t|
-      t.string :shopify_accont_url
+      t.string :shopify_account_url
       t.string :shopify_api_key
       t.string :shopify_password
       t.string :shopify_shared_secret
