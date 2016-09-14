@@ -52,6 +52,8 @@ group :development, :test do
   #auto test
   gem 'guard'
   gem 'guard-rspec'
+
+  gem 'rails-controller-testing'
 end
 
 group :development do

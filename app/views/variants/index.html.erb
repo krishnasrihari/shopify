@@ -1,0 +1,45 @@
+<div class="page-header">
+  <%= link_to new_variant_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Variant
+  <% end %>
+  <h1>Listing variants</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Product</th>
+            <th>Shopify variant</th>
+            <th>Option2</th>
+            <th>Option2</th>
+            <th>Option3</th>
+            <th>Sku</th>
+            <th>Barcode</th>
+            <th>Price</th>
+            <th>Last shopify sync</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @variants) do |variant| %>
+            <td><%= variant.product_id %></td>
+            <td><%= variant.shopify_variant_id %></td>
+            <td><%= variant.option2 %></td>
+            <td><%= variant.option2 %></td>
+            <td><%= variant.option3 %></td>
+            <td><%= variant.sku %></td>
+            <td><%= variant.barcode %></td>
+            <td><%= variant.price %></td>
+            <td><%= variant.last_shopify_sync %></td>
+            <td><%= link_to 'Show', variant %></td>
+        <td><%= link_to 'Edit', edit_variant_path(variant) %></td>
+        <td><%= link_to 'Destroy', variant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

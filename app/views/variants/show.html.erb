@@ -1,0 +1,41 @@
+<div class="page-header">
+  <%= link_to variants_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_variant_path(@variant), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show variant</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Product:</dt>
+  <dd><%= @variant.product_id %></dd>
+
+  <dt>Shopify variant:</dt>
+  <dd><%= @variant.shopify_variant_id %></dd>
+
+  <dt>Option2:</dt>
+  <dd><%= @variant.option2 %></dd>
+
+  <dt>Option2:</dt>
+  <dd><%= @variant.option2 %></dd>
+
+  <dt>Option3:</dt>
+  <dd><%= @variant.option3 %></dd>
+
+  <dt>Sku:</dt>
+  <dd><%= @variant.sku %></dd>
+
+  <dt>Barcode:</dt>
+  <dd><%= @variant.barcode %></dd>
+
+  <dt>Price:</dt>
+  <dd><%= @variant.price %></dd>
+
+  <dt>Last shopify sync:</dt>
+  <dd><%= @variant.last_shopify_sync %></dd>
+
+</dl>

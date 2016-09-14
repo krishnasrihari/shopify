@@ -1,6 +1,5 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: [:show, :edit, :update, :destroy]
-  before_action :require_login
 
   # GET /accounts
   # GET /accounts.json
@@ -40,7 +39,6 @@ class AccountsController < ApplicationController
 
   # PATCH/PUT /accounts/1
   # PATCH/PUT /accounts/1.json
-=begin
   def update
     respond_to do |format|
       if @account.update(account_params)
@@ -52,7 +50,6 @@ class AccountsController < ApplicationController
       end
     end
   end
-=end
 
   # DELETE /accounts/1
   # DELETE /accounts/1.json
@@ -64,46 +61,44 @@ class AccountsController < ApplicationController
     end
   end
 
+  # GET /accounts/1/test_connection
+  # GET /accounts/1/test_connection.json
+  def test_connection
+    # Connect to Shopify using our class
+    ShopifyIntegration.new(api_key: @account.shopify_api_key,
+                           shared_secret: @account.shopify_shared_secret,
+                           url: @account.shopify_account_url,
+                           password: @account.shopify_password).connect()
+    begin
+      # The gem will throw an exception if unable to retrieve Shop information
+      shop = ShopifyAPI::Shop.current
+    rescue => ex
+      @message = ex.message
+    end
 
-  # PATCH/PUT /account
-  def update
-    # See if they are upgrading to Paid
-    shopify_service = ShopifyIntegration.new(url: @account.shopify_account_url,
-                                             password: @account.shopify_password,
-                                             account_id: @account.id)
-
-    shopify_service.connect
-
-    if params[:account][:paid] == true || params[:account][:paid].to_i == 1
-      if @account.paid?
-        render 'edit'
-      else
-        # TODO: set the flag to false to really charge the card
-        redirect_to shopify_service.create_charge(1, true)
+    if shop.present?
+      respond_to do |format|
+        # Report the good news
+        format.html { redirect_to @account, notice: "Successfully Connected to #{shop.name}" }
+        format.json { render json: "Successfully Connected to #{shop.name}" }
       end
     else
-      # If not, just re-render the form
-      if shopify_service.delete_charge(@account.charge_id)
-        puts "asdfasdfsdfasdfsdfasdfsdfsdf"
-        @account.update_attribute(:paid, false)
+      respond_to do |format|
+        # Return the message from the exception
+        format.html { redirect_to @account, alert: "Unable to Connect: #{@message}" }
+        format.json { render json: "Unable to Connect: #{@message}", status: :unprocessable_entity }
       end
-
-      render 'edit'
     end
   end
 
-  
   private
-    def set_account
-      @account = current_account
-    end    
+  # Use callbacks to share common setup or constraints between actions.
+  def set_account
+    @account = Account.find(params[:id])
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
       params.require(:account).permit(:shopify_account_url, :shopify_api_key, :shopify_password, :shopify_shared_secret)
     end
-
-
-
-  
 end
