@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
-  # Shopify routes
-get 'shopify/authorize' => 'shopify#authorize'
-post 'shopify/authorize' => 'shopify#authorize'
-get 'shopify/install' => 'shopify#install'
-post 'shopify/install' => 'shopify#install'
+  
+  # Webhook routes
+  get "webhooks/uninstall"
+  post "webhooks/uninstall"
 
+  # Shopify routes
+  get 'shopify/authorize' => 'shopify#authorize'
+  post 'shopify/authorize' => 'shopify#authorize'
+  get 'shopify/install' => 'shopify#install'
+  post 'shopify/install' => 'shopify#install'
+
+  get 'dashboard/index' => 'dashboard#index'
 
   get 'sessions/new'
   post 'sessions/create'
