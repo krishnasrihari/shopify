@@ -35,6 +35,17 @@ group :development, :test do
   gem 'byebug', platform: :mri
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'fakeweb'
+
+  #auto test
+  gem 'guard'
+  gem 'guard-rspec'
 end
 
 group :development do
